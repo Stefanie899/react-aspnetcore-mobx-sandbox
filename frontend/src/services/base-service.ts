@@ -1,4 +1,5 @@
 import axios from "axios";
+import ServiceResponse from "interfaces/service-response";
 
 const baseEndpoint = "https://localhost:5001/api/v1/";
 
@@ -19,7 +20,7 @@ const authHeader = () => {
     }
 }
 
-const get = async (endpoint: string, params?: any) => {
+const get = async <T>(endpoint: string, params?: any): Promise<ServiceResponse<T>> => {
     const headers = authHeader();
 
     return await axios.get(getUrl(baseEndpoint + endpoint, params),

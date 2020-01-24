@@ -1,7 +1,7 @@
 import User from "interfaces/user";
 import { Computed, Action, Thunk } from "easy-peasy";
 import ServiceResponse from "interfaces/service-response";
-import AuthenticationResponse from "models/authentication/authentication-response";
+import AuthenticationResponse from "interfaces/authentication/authentication-response";
 
 interface AuthStore {
     currentUser?:    User;

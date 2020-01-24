@@ -1,4 +1,4 @@
-﻿namespace Web.Dtos.Topics
+﻿namespace Sandbox.Presentation.Web.Dtos.Topics
 {
     public class TopicDto
     {

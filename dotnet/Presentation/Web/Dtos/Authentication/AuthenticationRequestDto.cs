@@ -1,4 +1,4 @@
-﻿namespace Web.Dtos.Authentication
+﻿namespace Sandbox.Presentation.Web.Dtos.Authentication
 {
     public class AuthenticationRequestDto
     {

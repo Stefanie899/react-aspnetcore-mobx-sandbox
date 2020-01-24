@@ -2,9 +2,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using Web.Dtos;
+using Sandbox.Presentation.Web.Dtos;
 
-namespace Web.Api.V1
+namespace Sandbox.Presentation.Web.Api.V1
 {
     public class Controller : ControllerBase
     {

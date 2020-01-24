@@ -1,7 +1,7 @@
 ﻿using AndcultureCode.CSharp.Core.Interfaces;
 using System.Collections.Generic;
 
-namespace Web.Dtos
+namespace Sandbox.Presentation.Web.Dtos
 {
     public class ServiceResponseDto<T> : IResult<T>
     {

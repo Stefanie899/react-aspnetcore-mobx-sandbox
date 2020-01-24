@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Web.Api.V1.Topics.Doots
+namespace Sandbox.Presentation.Web.Api.V1.Topics.Doots
 {
     [Authorize]
     [ApiController]

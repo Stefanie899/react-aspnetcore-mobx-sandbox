@@ -7,21 +7,37 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using Web.Dtos.Authentication;
+using Sandbox.Presentation.Web.Dtos.Authentication;
+using AndcultureCode.CSharp.Core.Interfaces.Conductors;
+using Sandbox.Business.Core.Models.Users;
+using System.Linq;
 
-namespace Web.Api.V1.Authentication
+namespace Sandbox.Presentation.Web.Api.V1.Authentication
 {
     [ApiController]
     [Route("api/v1/authentication")]
     public class AuthenticationController : Controller
     {
+        private IRepositoryReadConductor<User> _userReadConductor;
+
+        public AuthenticationController(
+            IRepositoryReadConductor<User> userReadConductor
+        )
+        {
+            _userReadConductor = userReadConductor;
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] AuthenticationRequestDto dto)
         {
-            if (dto.Username.ToLower() != "test" || dto.Password.ToLower() != "test")
+            var userResult = _userReadConductor.FindAll(e => e.Username == dto.Username && e.Password == dto.Password);
+
+            if (userResult.ResultObject == null)
             {
                 return BadRequest<AuthenticationResponseDto>(null, new Error() { Key = "Credentials Incorrect", Message = "Username or Password is incorrect.", ErrorType = ErrorType.Error});
             }
+
+            var user = userResult.ResultObject.FirstOrDefault();
 
             // authentication successful so generate jwt token
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -39,16 +55,11 @@ namespace Web.Api.V1.Authentication
 
             var response = new AuthenticationResponseDto();
 
-            response.Authenticated = (dto.Username.ToLower() == "test" && dto.Password.ToLower() == "test");
-            response.FirstName     = "Test";
-            response.LastName      = "LastName";
-            response.Username      = "test";
+            response.Authenticated = true;
+            response.FirstName     = user.FirstName;
+            response.LastName      = user.LastName;
+            response.Username      = user.Username;
             response.Token         = tokenHandler.WriteToken(token);
-
-            if (!response.Authenticated)
-            {
-                return Ok(response, new Error() { Key = "Credentials Incorrect", Message = "Username or Password is incorrect.", ErrorType = ErrorType.Error});
-            }
 
             return Ok(response);
         }

@@ -11,6 +11,11 @@ C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2
 C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.RazorTargetAssemblyInfo.cache
 C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.dll
 C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.pdb
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\Core.dll
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\SqlServer.dll
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\SqlServer.pdb
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\Core.pdb
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.csproj.CopyComplete
 C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\web.config
 C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\appsettings.Development.json
 C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\appsettings.json

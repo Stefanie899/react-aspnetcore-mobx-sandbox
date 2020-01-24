@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 
-namespace Web
+namespace Sandbox.Presentation.Web
 {
     public class Program
     {

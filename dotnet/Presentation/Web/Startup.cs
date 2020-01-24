@@ -1,27 +1,36 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using AndcultureCode.CSharp.Conductors;
+using AndcultureCode.CSharp.Core.Interfaces;
+using AndcultureCode.CSharp.Core.Interfaces.Conductors;
+using AndcultureCode.CSharp.Core.Interfaces.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
+using Sandbox.Business.Core.Interfaces;
+using Sandbox.Infrastructure.Data.SqlServer;
+using Sandbox.Infrastructure.Data.SqlServer.Extensions;
+using Sandbox.Infrastructure.Data.SqlServer.Repositories;
 using System.Text;
 
-namespace Web
+namespace Sandbox.Presentation.Web
 {
     public class Startup
     {
-        public const string FRONTEND_DEVELOPMENT_SERVER_URL = "http://localhost:3000";
-        public const string FRONTEND_STATIC_CONTENT_PATH    = "wwwroot";
+        public IHostingEnvironment Environment   { get; }
+        public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration)
+        public const string FRONTEND_DEVELOPMENT_SERVER_URL = "http://localhost:3000";
+
+        public Startup(IHostingEnvironment env, IConfiguration configuration)
         {
             Configuration = configuration;
+            Environment   = env;
         }
-
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -32,8 +41,6 @@ namespace Web
             })); // Make sure you call this previous to AddMvc
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
-            services.AddSpaStaticFiles(config => config.RootPath = FRONTEND_STATIC_CONTENT_PATH);
 
             services.AddAuthentication(x =>
             {
@@ -52,6 +59,20 @@ namespace Web
                     ValidateAudience = false
                 };
             });
+
+            services.AddDbContext<SandboxContext> (ServiceLifetime.Scoped);
+            services.AddScoped                    ((sp) => new SandboxContext());
+            services.AddScoped<IContext>          ((sp) => new SandboxContext());
+            services.AddScoped<ISandboxContext>   ((sp) => new SandboxContext());
+
+            // Repository defaults
+            services.AddScoped(typeof(IRepositoryCreateConductor<>), typeof(RepositoryCreateConductor<>));
+            services.AddScoped(typeof(IRepositoryReadConductor<>),   typeof(RepositoryReadConductor<>));
+            services.AddScoped(typeof(IRepositoryUpdateConductor<>), typeof(RepositoryUpdateConductor<>));
+            services.AddScoped(typeof(IRepositoryDeleteConductor<>), typeof(RepositoryDeleteConductor<>));
+            services.AddScoped(typeof(IRepositoryConductor<>),       typeof(RepositoryConductor<>));
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,15 +105,12 @@ namespace Web
                     template: "{controller}/{action=Index}/{id?}");
             });
 
-            app.UseSpaStaticFiles();
-            app.UseSpa(spa =>
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                if (env.IsDevelopment())
-                {
-                    Console.WriteLine($"Proxying frontend from {FRONTEND_DEVELOPMENT_SERVER_URL}");
-                    spa.UseProxyToSpaDevelopmentServer(FRONTEND_DEVELOPMENT_SERVER_URL);
-                }
-            });
+                var context = serviceScope.ServiceProvider.GetService<SandboxContext>();
+                context.Database.Migrate();
+                context.EnsureSeedData(Environment);
+            }
         }
     }
 }

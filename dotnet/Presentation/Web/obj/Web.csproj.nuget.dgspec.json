@@ -4,14 +4,14 @@
     "C:\\Projects\\architecture-sandbox\\dotnet\\Presentation\\Web\\Web.csproj": {}
   },
   "projects": {
-    "C:\\Projects\\architecture-sandbox\\dotnet\\Presentation\\Web\\Web.csproj": {
+    "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Projects\\architecture-sandbox\\dotnet\\Presentation\\Web\\Web.csproj",
-        "projectName": "Web",
-        "projectPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Presentation\\Web\\Web.csproj",
+        "projectUniqueName": "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\Core.csproj",
+        "projectName": "Core",
+        "projectPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\Core.csproj",
         "packagesPath": "C:\\Users\\Stefanie\\.nuget\\packages\\",
-        "outputPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Presentation\\Web\\obj\\",
+        "outputPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -44,6 +44,164 @@
             "AndcultureCode.CSharp.Core": {
               "target": "Package",
               "version": "[0.2.1, )"
+            },
+            "AndcultureCode.CSharp.Extensions": {
+              "target": "Package",
+              "version": "[0.1.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projects\\architecture-sandbox\\dotnet\\Infrastructure\\Data.SqlServer\\SqlServer\\SqlServer.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\architecture-sandbox\\dotnet\\Infrastructure\\Data.SqlServer\\SqlServer\\SqlServer.csproj",
+        "projectName": "SqlServer",
+        "projectPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Infrastructure\\Data.SqlServer\\SqlServer\\SqlServer.csproj",
+        "packagesPath": "C:\\Users\\Stefanie\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Infrastructure\\Data.SqlServer\\SqlServer\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Stefanie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\Core.csproj": {
+                "projectPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\Core.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "AndcultureCode.CSharp.Core": {
+              "target": "Package",
+              "version": "[0.2.1, )"
+            },
+            "AndcultureCode.CSharp.Extensions": {
+              "target": "Package",
+              "version": "[0.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Projects\\architecture-sandbox\\dotnet\\Presentation\\Web\\Web.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\architecture-sandbox\\dotnet\\Presentation\\Web\\Web.csproj",
+        "projectName": "Web",
+        "projectPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Presentation\\Web\\Web.csproj",
+        "packagesPath": "C:\\Users\\Stefanie\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Presentation\\Web\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Stefanie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {
+              "C:\\Projects\\architecture-sandbox\\dotnet\\Infrastructure\\Data.SqlServer\\SqlServer\\SqlServer.csproj": {
+                "projectPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Infrastructure\\Data.SqlServer\\SqlServer\\SqlServer.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "AndcultureCode.CSharp.Conductors": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "AndcultureCode.CSharp.Core": {
+              "target": "Package",
+              "version": "[0.2.1, )"
+            },
+            "AndcultureCode.CSharp.Extensions": {
+              "target": "Package",
+              "version": "[0.1.1, )"
             },
             "Microsoft.AspNetCore.App": {
               "suppressParent": "All",

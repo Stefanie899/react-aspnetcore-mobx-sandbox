@@ -2,20 +2,22 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
-using Web.Dtos.Topics;
+using Sandbox.Presentation.Web.Dtos.Topics;
+using AndcultureCode.CSharp.Core.Interfaces.Conductors;
+using Sandbox.Business.Core.Models.Topics;
 
-namespace Web.Api.V1.Topics
+namespace Sandbox.Presentation.Web.Api.V1.Topics
 {
     [ApiController]
     [Route("api/v1/topics")]
     public class TopicsController : Controller
     {
-        private List<TopicDto> topics = new List<TopicDto>()
+        private IRepositoryConductor<Topic> _topicConductor;
+
+        public TopicsController(IRepositoryConductor<Topic> topicConductor)
         {
-            new TopicDto() { Id = 1, Body = "This is the body of a topic to test the thing. Plz tho.",        Title = "Test the thing",   Downdoots = 0,     Updoots = 0 },
-            new TopicDto() { Id = 2, Body = "This is the body of a second topic to test the thing. Plz tho.", Title = "Test the thing 2", Downdoots = 0,     Updoots = 5 },
-            new TopicDto() { Id = 3, Body = "This is the body of a third topic to test the thing. Plz tho.",  Title = "Test the thing 3", Downdoots = 15000, Updoots = 0 },
-        };
+            _topicConductor = topicConductor;
+        }
 
         [Authorize]
         [HttpPost]
@@ -27,20 +29,45 @@ namespace Web.Api.V1.Topics
         [HttpGet]
         public IActionResult Index()
         {
-            return Ok(topics);
+            var result = _topicConductor.FindAll();
+
+            var topicDtos = new List<TopicDto>();
+
+            foreach (var topic in result.ResultObject.ToList())
+            {
+                topicDtos.Add(new TopicDto()
+                {
+                    Id        = topic.Id,
+                    Title     = topic.Title,
+                    Body      = topic.Body,
+                    Updoots   = topic.Updoots,
+                    Downdoots = topic.Downdoots
+                });
+            }
+
+            return Ok(topicDtos);
         }
 
         [HttpGet("{id:long}")]
         public IActionResult Get(long id)
         {
-            var topic = topics.FirstOrDefault(e => e.Id == id);
+            var result = _topicConductor.FindById(id);
 
-            if (topic == null)
+            if (result.ResultObject == null)
             {
                 return NotFound();
             }
 
-            return Ok(topic);
+            var topic = result.ResultObject;
+
+            return Ok(new TopicDto()
+            {
+                Id        = topic.Id,
+                Title     = topic.Title,
+                Body      = topic.Body,
+                Updoots   = topic.Updoots,
+                Downdoots = topic.Downdoots
+            });
         }
     }
 }

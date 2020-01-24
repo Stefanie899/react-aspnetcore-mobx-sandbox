@@ -20,8 +20,6 @@ const LoginPage: React.FC = () => {
 
         const response = await authActions.login({username: userName, password: password});
 
-        console.debug(response);
-
         setLoading(false);
 
         if (response.errors != null && response.errors.length > 0) {

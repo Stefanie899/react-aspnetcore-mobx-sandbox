@@ -1,5 +1,5 @@
 import ServiceResponse from "interfaces/service-response";
-import AuthenticationResponse from "models/authentication/authentication-response";
+import AuthenticationResponse from "interfaces/authentication/authentication-response";
 import BaseServices from "services/base-service";
 
 const endpoint = "authentication";

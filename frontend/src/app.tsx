@@ -9,7 +9,7 @@ import { CoreUtils } from 'utilities/core-utils';
 import { RoutingUtils } from 'utilities/routing-utils';
 import { StoreProvider, createStore } from 'easy-peasy';
 import AuthStoreModel from 'models/stores/auth-store-model';
-import AuthenticationResponse from 'models/authentication/authentication-response';
+import AuthenticationResponse from 'interfaces/authentication/authentication-response';
 const history = createBrowserHistory()
 
 const App: React.FC = () => {

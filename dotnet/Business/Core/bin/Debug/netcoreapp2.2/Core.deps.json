@@ -1,14 +1,15 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.2",
-    "signature": "92bcb90035c7466c8909964e40250b4ed8e63510"
+    "signature": ""
   },
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.2": {
       "Core/1.0.0": {
         "dependencies": {
-          "AndcultureCode.CSharp.Core": "0.2.1"
+          "AndcultureCode.CSharp.Core": "0.2.1",
+          "AndcultureCode.CSharp.Extensions": "0.1.1"
         },
         "runtime": {
           "Core.dll": {}
@@ -16,7 +17,7 @@
       },
       "AndcultureCode.CSharp.Core/0.2.1": {
         "dependencies": {
-          "AndcultureCode.CSharp.Extensions": "0.0.7",
+          "AndcultureCode.CSharp.Extensions": "0.1.1",
           "Microsoft.AspNetCore": "2.2.0",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.Extensions.Logging": "2.2.0"
@@ -28,11 +29,15 @@
           }
         }
       },
-      "AndcultureCode.CSharp.Extensions/0.0.7": {
+      "AndcultureCode.CSharp.Extensions/0.1.1": {
+        "dependencies": {
+          "Microsoft.CSharp": "4.5.0",
+          "Newtonsoft.Json": "12.0.2"
+        },
         "runtime": {
           "lib/netstandard2.0/AndcultureCode.CSharp.Extensions.dll": {
-            "assemblyVersion": "0.0.7.0",
-            "fileVersion": "0.0.7.0"
+            "assemblyVersion": "0.1.1.0",
+            "fileVersion": "0.1.1.0"
           }
         }
       },
@@ -417,6 +422,7 @@
           }
         }
       },
+      "Microsoft.CSharp/4.5.0": {},
       "Microsoft.Extensions.Configuration/2.2.0": {
         "dependencies": {
           "Microsoft.Extensions.Configuration.Abstractions": "2.2.0"
@@ -488,7 +494,7 @@
         "dependencies": {
           "Microsoft.Extensions.Configuration": "2.2.0",
           "Microsoft.Extensions.Configuration.FileExtensions": "2.2.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Configuration.Json.dll": {
@@ -633,7 +639,7 @@
       "Microsoft.Extensions.Logging.EventSource/2.2.0": {
         "dependencies": {
           "Microsoft.Extensions.Logging": "2.2.0",
-          "Newtonsoft.Json": "11.0.2"
+          "Newtonsoft.Json": "12.0.2"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.Extensions.Logging.EventSource.dll": {
@@ -701,11 +707,11 @@
           }
         }
       },
-      "Newtonsoft.Json/11.0.2": {
+      "Newtonsoft.Json/12.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "11.0.0.0",
-            "fileVersion": "11.0.2.21924"
+            "assemblyVersion": "12.0.0.0",
+            "fileVersion": "12.0.2.23222"
           }
         }
       },
@@ -731,26 +737,8 @@
           }
         }
       },
-      "System.Security.Cryptography.Cng/4.5.0": {
-        "runtimeTargets": {
-          "runtime/win/lib/_._": {
-            "rid": "win",
-            "assetType": "runtime"
-          }
-        }
-      },
-      "System.Security.Principal.Windows/4.5.0": {
-        "runtimeTargets": {
-          "runtime/unix/lib/_._": {
-            "rid": "unix",
-            "assetType": "runtime"
-          },
-          "runtime/win/lib/_._": {
-            "rid": "win",
-            "assetType": "runtime"
-          }
-        }
-      },
+      "System.Security.Cryptography.Cng/4.5.0": {},
+      "System.Security.Principal.Windows/4.5.0": {},
       "System.Text.Encodings.Web/4.5.0": {
         "runtime": {
           "lib/netstandard2.0/System.Text.Encodings.Web.dll": {
@@ -775,12 +763,12 @@
       "path": "andculturecode.csharp.core/0.2.1",
       "hashPath": "andculturecode.csharp.core.0.2.1.nupkg.sha512"
     },
-    "AndcultureCode.CSharp.Extensions/0.0.7": {
+    "AndcultureCode.CSharp.Extensions/0.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-NQJFNssncScH4T/iPWm7VhMQu5PEB3TaLPc4LeQyoyudDx1Jxj/k8Rb9sd5Xj3Mqb0/0IMReiGwQBmBRlHcdOg==",
-      "path": "andculturecode.csharp.extensions/0.0.7",
-      "hashPath": "andculturecode.csharp.extensions.0.0.7.nupkg.sha512"
+      "sha512": "sha512-3Ytt9JGFJvOLLeFizOP94Npc8wCAjAjgKNyI/VuPWURXxR1rTmsCr4dh5ct82wmyHRHucqJXj5kzBqgxEJQ8pw==",
+      "path": "andculturecode.csharp.extensions/0.1.1",
+      "hashPath": "andculturecode.csharp.extensions.0.1.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore/2.2.0": {
       "type": "package",
@@ -957,6 +945,13 @@
       "path": "microsoft.aspnetcore.webutilities/2.2.0",
       "hashPath": "microsoft.aspnetcore.webutilities.2.2.0.nupkg.sha512"
     },
+    "Microsoft.CSharp/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kaj6Wb4qoMuH3HySFJhxwQfe8R/sJsNJnANrvv8WdFPMoNbKY5htfNscv+LHCu5ipz+49m2e+WQXpLXr9XYemQ==",
+      "path": "microsoft.csharp/4.5.0",
+      "hashPath": "microsoft.csharp.4.5.0.nupkg.sha512"
+    },
     "Microsoft.Extensions.Configuration/2.2.0": {
       "type": "package",
       "serviceable": true,
@@ -1132,12 +1127,12 @@
       "path": "microsoft.net.http.headers/2.2.0",
       "hashPath": "microsoft.net.http.headers.2.2.0.nupkg.sha512"
     },
-    "Newtonsoft.Json/11.0.2": {
+    "Newtonsoft.Json/12.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
-      "path": "newtonsoft.json/11.0.2",
-      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
+      "sha512": "sha512-rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
+      "path": "newtonsoft.json/12.0.2",
+      "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
     },
     "System.Buffers/4.5.0": {
       "type": "package",
