@@ -1,0 +1,8 @@
+C:\Projects\architecture-sandbox\dotnet\obj\Debug\netcoreapp2.2\Web.csprojAssemblyReference.cache
+C:\Projects\architecture-sandbox\dotnet\obj\Debug\netcoreapp2.2\Web.csproj.CoreCompileInputs.cache
+C:\Projects\architecture-sandbox\dotnet\obj\Debug\netcoreapp2.2\Web.AssemblyInfoInputs.cache
+C:\Projects\architecture-sandbox\dotnet\obj\Debug\netcoreapp2.2\Web.AssemblyInfo.cs
+C:\Projects\architecture-sandbox\dotnet\bin\Debug\netcoreapp2.2\Web.deps.json
+C:\Projects\architecture-sandbox\dotnet\bin\Debug\netcoreapp2.2\Web.runtimeconfig.json
+C:\Projects\architecture-sandbox\dotnet\bin\Debug\netcoreapp2.2\Web.runtimeconfig.dev.json
+C:\Projects\architecture-sandbox\dotnet\bin\Debug\netcoreapp2.2\Web.dll

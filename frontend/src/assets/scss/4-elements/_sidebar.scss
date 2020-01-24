@@ -1,0 +1,32 @@
+#sidebar {
+    background-color: #000;
+    color: #fff;
+    flex-basis: 15%;
+    padding: 16px;
+    text-align: center;
+
+    ul {
+        margin-top: 32px;
+    }
+
+    li {
+        display: block;
+        padding: 8px;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+
+        &.active {
+            color: limegreen;
+        }
+
+        h1 {
+            color: greenyellow;
+            font-size: 28px;
+            text-decoration: none;
+            margin-bottom: 8px;
+        }
+    }
+}

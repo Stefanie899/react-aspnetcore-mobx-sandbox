@@ -1,0 +1,17 @@
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\Web.deps.json
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\Web.runtimeconfig.json
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\Web.runtimeconfig.dev.json
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\Web.dll
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\Web.pdb
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.csprojAssemblyReference.cache
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.RazorAssemblyInfo.cache
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.RazorAssemblyInfo.cs
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.AssemblyInfoInputs.cache
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.AssemblyInfo.cs
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.RazorTargetAssemblyInfo.cache
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.dll
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\obj\Debug\netcoreapp2.2\Web.pdb
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\web.config
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\appsettings.Development.json
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\appsettings.json
+C:\Projects\architecture-sandbox\dotnet\Presentation\Web\bin\Debug\netcoreapp2.2\Properties\launchSettings.json

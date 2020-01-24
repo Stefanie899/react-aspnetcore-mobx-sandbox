@@ -1,0 +1,68 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\Core.csproj": {}
+  },
+  "projects": {
+    "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\Core.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\Core.csproj",
+        "projectName": "Core",
+        "projectPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\Core.csproj",
+        "packagesPath": "C:\\Users\\Stefanie\\.nuget\\packages\\",
+        "outputPath": "C:\\Projects\\architecture-sandbox\\dotnet\\Business\\Core\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Stefanie\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "AndcultureCode.CSharp.Core": {
+              "target": "Package",
+              "version": "[0.2.1, )"
+            },
+            "AndcultureCode.CSharp.Extensions": {
+              "target": "Package",
+              "version": "[0.1.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

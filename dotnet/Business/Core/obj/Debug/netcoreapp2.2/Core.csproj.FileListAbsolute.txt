@@ -1,0 +1,9 @@
+C:\Projects\architecture-sandbox\dotnet\Business\Core\bin\Debug\netcoreapp2.2\Core.deps.json
+C:\Projects\architecture-sandbox\dotnet\Business\Core\bin\Debug\netcoreapp2.2\Core.dll
+C:\Projects\architecture-sandbox\dotnet\Business\Core\bin\Debug\netcoreapp2.2\Core.pdb
+C:\Projects\architecture-sandbox\dotnet\Business\Core\obj\Debug\netcoreapp2.2\Core.csproj.CoreCompileInputs.cache
+C:\Projects\architecture-sandbox\dotnet\Business\Core\obj\Debug\netcoreapp2.2\Core.AssemblyInfoInputs.cache
+C:\Projects\architecture-sandbox\dotnet\Business\Core\obj\Debug\netcoreapp2.2\Core.AssemblyInfo.cs
+C:\Projects\architecture-sandbox\dotnet\Business\Core\obj\Debug\netcoreapp2.2\Core.dll
+C:\Projects\architecture-sandbox\dotnet\Business\Core\obj\Debug\netcoreapp2.2\Core.pdb
+C:\Projects\architecture-sandbox\dotnet\Business\Core\obj\Debug\netcoreapp2.2\Core.csprojAssemblyReference.cache
