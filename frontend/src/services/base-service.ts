@@ -57,6 +57,26 @@ const post = async (endpoint: string, data: any) => {
         })
 }
 
+const put = async (endpoint: string, data: any) => {
+    const headers = Object.assign({
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    }, authHeader());
+
+    return await axios.put(baseEndpoint + endpoint, data,
+        {
+            headers: headers
+        })
+        .then((r) => {
+            return r.data;
+        })
+        .catch((r) => {
+            return {
+                errors: [r]
+            };
+        })
+}
+
 const getUrl = (fullEndpoint: string, params ?: any, payload ?: any, endpointSuffix ?: string): string => {
     let url = fullEndpoint;
     const pattern = /(?:\{(.*?)\})/g;
@@ -132,6 +152,7 @@ const getUrl = (fullEndpoint: string, params ?: any, payload ?: any, endpointSuf
 const BaseServices = {
     get,
     post,
+    put,
 };
 
 export default BaseServices;

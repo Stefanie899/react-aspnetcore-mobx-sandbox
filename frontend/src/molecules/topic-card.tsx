@@ -1,11 +1,40 @@
 import React from "react";
 import Topic from "interfaces/topics/topic";
 import { useAuthStoreState } from "hooks/auth-store-hooks";
+import TopicDoot from "interfaces/topics/topic-doot";
+import { DootType } from "interfaces/enums/doot-type";
+import TopicDootsService from "services/topics/topic-doots-service";
 
-const TopicCard: React.FC<{ topic: Topic }> = (props) => {
-    const { topic } = props;
+const TopicCard: React.FC<{ topic: Topic, topicDoot?: TopicDoot, onDoot?: (topicId: number) => void }> = (props) => {
+    const { topic, topicDoot } = props;
 
     const authState = useAuthStoreState(actions => actions);
+
+    const dooted     = topicDoot != null && topicDoot.dootType != DootType.NotADoot;
+    const upDooted   = dooted && topicDoot?.dootType == DootType.Updoot;
+    const downDooted = dooted && topicDoot?.dootType == DootType.Downdoot;
+
+    const doot = async (dootType: DootType) => {
+        if (topicDoot != null)
+        {
+            await TopicDootsService.put({
+                id:       topicDoot.id,
+                dootType: dootType,
+                topicId:  topic.id,
+                userId:   1,
+            })
+        } else {
+            await TopicDootsService.post({
+                dootType: dootType,
+                topicId:  topic.id,
+                userId:   1,
+            })
+        }
+
+        if (props.onDoot != null) {
+            props.onDoot(topic.id);
+        }
+    }
 
     return (
         <div className="topic-card">
@@ -16,32 +45,44 @@ const TopicCard: React.FC<{ topic: Topic }> = (props) => {
                 </p>
             </div>
             <ul>
-                { // if
-                    authState.isAuthenticated &&
-                    <li>
-                        <a href="#">Updoot</a>
-                    </li>
-                }
                 <li>
-                    {topic.updoots} updoots
+                    { // if
+                        authState.isAuthenticated &&
+                        !upDooted &&
+                        <a href="#" onClick={() => doot(DootType.Updoot)}>Updoot</a>
+                    }
+                    {
+                        authState.isAuthenticated &&
+                        upDooted &&
+                        <a href="#" onClick={() => doot(DootType.NotADoot)}>Remove Updoot</a>
+                    }
+                    <span>
+                        {topic.updoots} updoots
+                    </span>
                 </li>
-                { // if
-                    authState.isAuthenticated &&
-                    <li>
-                        <a href="#">Downdoot</a>
-                    </li>
-                }
                 <li>
-                    {topic.downdoots} downdoots
+                    { // if
+                        authState.isAuthenticated &&
+                        !downDooted &&
+                        <a href="#" onClick={() => doot(DootType.Downdoot)}>Downdoot</a>
+                    }
+                    { // if
+                        authState.isAuthenticated &&
+                        downDooted &&
+                        <a href="#" onClick={() => doot(DootType.NotADoot)}>Remove Downdoot</a>
+                    }
+                    <span>
+                        {topic.downdoots} downdoots
+                    </span>
                 </li>
-                { // if
-                    authState.isAuthenticated &&
-                    <li>
+                <li>
+                    { // if
+                        authState.isAuthenticated &&
                         <a href="#">Comment</a>
-                    </li>
-                }
-                <li>
-                    0 comments
+                    }
+                    <span>
+                        0 comments
+                    </span>
                 </li>
             </ul>
         </div>

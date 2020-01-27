@@ -1,4 +1,4 @@
-import User from "interfaces/user";
+import User from "interfaces/users/user";
 import { Computed, Action, Thunk } from "easy-peasy";
 import ServiceResponse from "interfaces/service-response";
 import AuthenticationResponse from "interfaces/authentication/authentication-response";
