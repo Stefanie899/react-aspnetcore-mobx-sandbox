@@ -1,91 +1,87 @@
 import React from "react";
 import Topic from "interfaces/topics/topic";
-import { useAuthStoreState } from "hooks/auth-store-hooks";
 import TopicDoot from "interfaces/topics/topic-doot";
 import { DootType } from "interfaces/enums/doot-type";
-import TopicDootsService from "services/topics/topic-doots-service";
+import { useStores } from "hooks/mobx-hook";
+import { AuthContext } from "contexts/auth-store-context";
+import { TopicDootsContext } from "contexts/topic-doots-store-context";
+import { TopicsContext } from "contexts/topics-store-context";
+import { useObserver } from "mobx-react-lite";
 
-const TopicCard: React.FC<{ topic: Topic, topicDoot?: TopicDoot, onDoot?: (topicId: number) => void }> = (props) => {
+const TopicCard: React.FC<{ topic: Topic, topicDoot?: TopicDoot }> = (props) => {
     const { topic, topicDoot } = props;
 
-    const authState = useAuthStoreState(actions => actions);
+    const { authStore } = useStores(AuthContext);
+    const { topicsStore }     = useStores(TopicsContext);
+    const { topicDootsStore } = useStores(TopicDootsContext);
 
     const dooted     = topicDoot != null && topicDoot.dootType != DootType.NotADoot;
     const upDooted   = dooted && topicDoot?.dootType == DootType.Updoot;
     const downDooted = dooted && topicDoot?.dootType == DootType.Downdoot;
 
     const doot = async (dootType: DootType) => {
-        if (topicDoot != null)
-        {
-            await TopicDootsService.put({
-                id:       topicDoot.id,
-                dootType: dootType,
-                topicId:  topic.id,
-                userId:   1,
-            })
-        } else {
-            await TopicDootsService.post({
-                dootType: dootType,
-                topicId:  topic.id,
-                userId:   1,
-            })
-        }
+        await topicDootsStore.addOrUpdateDoot({
+            id:       topicDoot?.id,
+            dootType: dootType,
+            topicId:  topic.id,
+            userId:   1,
+        });
 
-        if (props.onDoot != null) {
-            props.onDoot(topic.id);
-        }
+        topicsStore.getTopic(topic.id);
     }
 
     return (
-        <div className="topic-card">
-            <h1>{topic.title}</h1>
-            <div className = "content">
-                <p>
-                    {topic.body}
-                </p>
+        useObserver(() => (
+            <div className="topic-card">
+                <h1>{topic.title}</h1>
+                <div className = "content">
+                    <p>
+                        {topic.body}
+                    </p>
+                </div>
+                <ul>
+                    <li>
+                        { // if
+                            authStore.isAuthenticated &&
+                            !upDooted &&
+                            <a href="#" onClick={() => doot(DootType.Updoot)}>Updoot</a>
+                        }
+                        {
+                            authStore.isAuthenticated &&
+                            upDooted &&
+                            <a href="#" onClick={() => doot(DootType.NotADoot)}>Remove Updoot</a>
+                        }
+                        <span>
+                            {topic.updoots} updoots
+                        </span>
+                    </li>
+                    <li>
+                        { // if
+                            authStore.isAuthenticated &&
+                            !downDooted &&
+                            <a href="#" onClick={() => doot(DootType.Downdoot)}>Downdoot</a>
+                        }
+                        { // if
+                            authStore.isAuthenticated &&
+                            downDooted &&
+                            <a href="#" onClick={() => doot(DootType.NotADoot)}>Remove Downdoot</a>
+                        }
+                        <span>
+                            {topic.downdoots} downdoots
+                        </span>
+                    </li>
+                    <li>
+                        { // if
+                            authStore.isAuthenticated &&
+                            <a href="#">Comment</a>
+                        }
+                        <span>
+                            0 comments
+                        </span>
+                    </li>
+                </ul>
             </div>
-            <ul>
-                <li>
-                    { // if
-                        authState.isAuthenticated &&
-                        !upDooted &&
-                        <a href="#" onClick={() => doot(DootType.Updoot)}>Updoot</a>
-                    }
-                    {
-                        authState.isAuthenticated &&
-                        upDooted &&
-                        <a href="#" onClick={() => doot(DootType.NotADoot)}>Remove Updoot</a>
-                    }
-                    <span>
-                        {topic.updoots} updoots
-                    </span>
-                </li>
-                <li>
-                    { // if
-                        authState.isAuthenticated &&
-                        !downDooted &&
-                        <a href="#" onClick={() => doot(DootType.Downdoot)}>Downdoot</a>
-                    }
-                    { // if
-                        authState.isAuthenticated &&
-                        downDooted &&
-                        <a href="#" onClick={() => doot(DootType.NotADoot)}>Remove Downdoot</a>
-                    }
-                    <span>
-                        {topic.downdoots} downdoots
-                    </span>
-                </li>
-                <li>
-                    { // if
-                        authState.isAuthenticated &&
-                        <a href="#">Comment</a>
-                    }
-                    <span>
-                        0 comments
-                    </span>
-                </li>
-            </ul>
-        </div>
+        ))
     );
 }
 

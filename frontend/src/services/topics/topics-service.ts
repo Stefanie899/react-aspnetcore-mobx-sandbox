@@ -4,11 +4,16 @@ import Topic from "interfaces/topics/topic";
 
 const baseEndpoint = "topics";
 
-const get = async (): Promise<ServiceResponse<Topic[]>> => {
+const index = async (): Promise<ServiceResponse<Topic[]>> => {
     return await BaseServices.get(baseEndpoint);
 }
 
+const get = async (id: number): Promise<ServiceResponse<Topic>> => {
+    return await BaseServices.get(`${baseEndpoint}/${id}`);
+}
+
 const TopicsServices = {
+    index,
     get,
 };
 

@@ -12,12 +12,17 @@ const put = async (doot: TopicDoot): Promise<ServiceResponse<TopicDoot>> => {
     return await BaseServices.put(endpoint, doot);
 }
 
-const get = async (): Promise<ServiceResponse<TopicDoot[]>> => {
+const get = async (id: number): Promise<ServiceResponse<TopicDoot>> => {
+    return await BaseServices.get(`${endpoint}/${id}`);
+}
+
+const index = async (): Promise<ServiceResponse<TopicDoot[]>> => {
     return await BaseServices.get(endpoint, { userId: 1 });
 }
 
 const TopicDootsService = {
     get,
+    index,
     post,
     put,
 };

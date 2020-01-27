@@ -1,50 +1,36 @@
-import React, { useState, useEffect } from "react";
-import TopicsServices from "services/topics/topics-service";
-import Topic from "interfaces/topics/topic";
+import React, { useEffect } from "react";
 import TopicCard from "molecules/topic-card";
-import TopicDoot from "interfaces/topics/topic-doot";
-import TopicDootsService from "services/topics/topic-doots-service";
+import { TopicsContext } from "contexts/topics-store-context";
+import { useStores } from "hooks/mobx-hook";
+import { TopicDootsContext } from "contexts/topic-doots-store-context";
+import { useObserver } from "mobx-react-lite";
 
 const HomePage: React.FC = () => {
-    const [topics, setTopics]         = useState(Array<Topic>());
-    const [topicDoots, setTopicDoots] = useState(Array<TopicDoot>());
-    const [refresh, setRefresh]       = useState(true);
+    const { topicsStore }     = useStores(TopicsContext);
+    const { topicDootsStore } = useStores(TopicDootsContext);
 
     useEffect(() => {
-        const fetchData = async () => {
-            const topics = await TopicsServices.get();
-
-            setTopics(topics.resultObject);
-        }
-
-        const fetchDoots = async () => {
-            const topics = await TopicDootsService.get();
-
-            setTopicDoots(topics.resultObject);
-        }
-
-        fetchData();
-        fetchDoots();
-
-        setRefresh(false);
-    }, [refresh])
+        topicsStore.getTopics();
+        topicDootsStore.getTopicDoots();
+    }, [])
 
     return (
-        <React.Fragment>
-            {
-                topics.map((t) => {
-                    const doot = topicDoots?.find(e => e.userId == 1 && e.topicId == t.id);
+        useObserver(() => (
+            <React.Fragment>
+                {
+                    topicsStore.topics.map((t) => {
+                        const doot = topicDootsStore.topicDoots?.find(e => e.userId == 1 && e.topicId == t.id);
 
-                    return (
-                        <TopicCard
-                            key       = {t.id}
-                            onDoot    = {() => setRefresh(true)}
-                            topic     = {t}
-                            topicDoot = {doot} />
-                    )
-                })
-            }
-        </React.Fragment>
+                        return (
+                            <TopicCard
+                                key       = {t.id}
+                                topic     = {t}
+                                topicDoot = {doot} />
+                        )
+                    })
+                }
+            </React.Fragment>
+        ))
     );
 }
 

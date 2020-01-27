@@ -1,14 +1,49 @@
 import User from "interfaces/users/user";
-import { Computed, Action, Thunk } from "easy-peasy";
-import ServiceResponse from "interfaces/service-response";
-import AuthenticationResponse from "interfaces/authentication/authentication-response";
+import { observable, action, computed } from 'mobx'
+import AuthenticationServices from "services/authentication/authentication-service";
 
-interface AuthStore {
-    currentUser?:    User;
-    isAuthenticated: Computed<AuthStore, boolean>;
-    login:           Thunk<AuthStore, {username: string, password: string}, null, {}, Promise<ServiceResponse<AuthenticationResponse>>>;
-    logout:          Action<AuthStore>;
-    setUser:         Action<AuthStore, User>;
+export class AuthStore {
+    @observable
+    currentUser?: User = undefined;
+
+    @computed
+    get isAuthenticated() {
+        return this.currentUser != null;
+    }
+
+    @action
+    logout() {
+        localStorage.removeItem("user");
+        this.currentUser = undefined;
+    }
+
+    @action
+    setUser(user: User) {
+        this.currentUser = user;
+    }
+
+    @action
+    async login(user: {username: string, password: string}) {
+        const response = await AuthenticationServices.post(user);
+        const result = response.resultObject;
+
+        if (response.errors != null && response.errors.length > 0) {
+            console.log("There was an error!");
+            console.debug(response.errors);
+
+            return response;
+        }
+
+        if (result != null && result.authenticated) {
+            this.setUser({
+                userName:  result.username, 
+                firstName: result.firstName, 
+                lastName:  result.lastName
+            });
+        }
+
+        return response;
+    }
 }
 
 export default AuthStore;

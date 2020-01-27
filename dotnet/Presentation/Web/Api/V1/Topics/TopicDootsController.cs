@@ -47,6 +47,27 @@ namespace Sandbox.Presentation.Web.Api.V1.Topics.Doots
             return Ok(topicDootDtos);
         }
 
+        [HttpGet("{id:long}")]
+        public IActionResult Get(long id)
+        {
+            var result = _topicDootsConductor.FindById(id);
+
+            if (result.ResultObject == null)
+            {
+                return NotFound();
+            }
+
+            var topicDoot = result.ResultObject;
+
+            return Ok(new TopicDootDto()
+            {
+                Id       = topicDoot.Id,
+                TopicId  = topicDoot.TopicId,
+                UserId   = topicDoot.UserId,
+                DootType = topicDoot.DootType
+            });
+        }
+
         [HttpPost]
         public IActionResult Post([FromBody] TopicDootDto dto)
         {
@@ -83,7 +104,13 @@ namespace Sandbox.Presentation.Web.Api.V1.Topics.Doots
 
             var updateResult = _topicsConductor.Update(topic);
 
-            return Ok();
+            return Ok(new TopicDootDto()
+            {
+                Id       = topicDoot.Id,
+                TopicId  = topicDoot.TopicId,
+                UserId   = topicDoot.UserId,
+                DootType = topicDoot.DootType
+            });
         }
 
         [HttpPut]
@@ -124,7 +151,13 @@ namespace Sandbox.Presentation.Web.Api.V1.Topics.Doots
 
             var updateResult = _topicsConductor.Update(topic);
 
-            return Ok();
+            return Ok(new TopicDootDto()
+            {
+                Id       = existingDoot.Id,
+                TopicId  = existingDoot.TopicId,
+                UserId   = existingDoot.UserId,
+                DootType = existingDoot.DootType
+            });
         }
     }
 }

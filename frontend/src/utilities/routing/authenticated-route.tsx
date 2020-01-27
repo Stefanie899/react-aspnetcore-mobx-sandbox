@@ -1,7 +1,8 @@
 import { routes } from "routes";
 import * as React from "react";
 import { Redirect, Route, RouteComponentProps } from "react-router-dom";
-import { useAuthStoreState } from "hooks/auth-store-hooks";
+import { AuthContext } from "contexts/auth-store-context";
+import { useStores } from "hooks/mobx-hook";
 
 /*
 -------------------------------------------------------------------------
@@ -24,10 +25,10 @@ const AuthenticatedRoute: React.FC<AuthenticatedRouteProps> = ({
     render,
     ...rest
 }) => {
-    const isAuthenticated = useAuthStoreState(state => state.isAuthenticated);
+    const { authStore } = useStores(AuthContext);
 
     const renderIfAuthenticated = (props: any): any => {
-        if (isAuthenticated) {
+        if (authStore.isAuthenticated) {
             return render(props);
         }
 

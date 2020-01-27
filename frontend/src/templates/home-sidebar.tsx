@@ -1,10 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useAuthStoreActions, useAuthStoreState } from "hooks/auth-store-hooks";
+import { useStores } from "hooks/mobx-hook";
+import { AuthContext } from "contexts/auth-store-context";
 
 const HomeSidebar: React.FC = () => {
-    const authState   = useAuthStoreState(actions => actions);
-    const authActions = useAuthStoreActions(actions => actions);
+    const { authStore } = useStores(AuthContext);
 
     return (
         <nav id="sidebar">
@@ -14,12 +14,12 @@ const HomeSidebar: React.FC = () => {
                 <h1>TOPIC UPDOOTER</h1>
             </NavLink>
             { // if
-                authState.isAuthenticated &&
+                authStore.isAuthenticated &&
                 <p>
-                    Welcome, {authState.currentUser?.firstName} {authState.currentUser?.lastName}
+                    Welcome, {authStore.currentUser?.firstName} {authStore.currentUser?.lastName}
                     <li>
                         <a href="#" onClick={() => {
-                            authActions.logout();
+                            authStore.logout();
                         }}>
                             Logout
                         </a>
@@ -27,7 +27,7 @@ const HomeSidebar: React.FC = () => {
                 </p>
             }
             { // if
-                !authState.isAuthenticated &&
+                !authStore.isAuthenticated &&
                 <li>
                     <NavLink
                         activeClassName=""
@@ -46,7 +46,7 @@ const HomeSidebar: React.FC = () => {
                     </NavLink>
                 </li>
                 { // if
-                    authState.isAuthenticated &&
+                    authStore.isAuthenticated &&
                     <li>
                         <NavLink
                             activeClassName="active"

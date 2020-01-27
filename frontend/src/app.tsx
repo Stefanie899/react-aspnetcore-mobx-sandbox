@@ -7,9 +7,9 @@ import { NestedRoutes, NestedRoutesByProperty } from 'utilities/routing/nested-r
 import { routes } from 'routes';
 import { CoreUtils } from 'utilities/core-utils';
 import { RoutingUtils } from 'utilities/routing-utils';
-import { StoreProvider, createStore } from 'easy-peasy';
-import AuthStoreModel from 'models/stores/auth-store-model';
 import AuthenticationResponse from 'interfaces/authentication/authentication-response';
+import { useStores } from 'hooks/mobx-hook';
+import { AuthContext } from 'contexts/auth-store-context';
 const history = createBrowserHistory()
 
 const App: React.FC = () => {
@@ -33,29 +33,27 @@ const App: React.FC = () => {
         }
     }
 
-    const store = createStore(AuthStoreModel, {
-        initialState: {
-            currentUser: currentUser
-        }
-    });
+    const { authStore } = useStores(AuthContext);
+
+    if (authStore.currentUser == null && currentUser != null) {
+        authStore.setUser(currentUser);
+    }
 
     return (
-        <StoreProvider store={store}>
-            <Router history={history}>
+        <Router history={history}>
+            <Switch>
+                <NestedRoutesByProperty
+                    propertyName="sidebar"
+                    routes={flattenedRoutes}
+                />
+            </Switch>
+            <div id="content">
                 <Switch>
-                    <NestedRoutesByProperty
-                        propertyName="sidebar"
-                        routes={flattenedRoutes}
-                    />
+                    <NestedRoutes routes={routeArray} />
+                    <Route component={NotFoundPage} />
                 </Switch>
-                <div id="content">
-                    <Switch>
-                        <NestedRoutes routes={routeArray} />
-                        <Route component={NotFoundPage} />
-                    </Switch>
-                </div>
-            </Router>
-        </StoreProvider>
+            </div>
+        </Router>
     );
 }
 
