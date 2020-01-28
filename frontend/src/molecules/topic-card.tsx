@@ -6,12 +6,17 @@ import { useStores } from "hooks/mobx-hook";
 import { AuthContext } from "contexts/auth-store-context";
 import { TopicDootsContext } from "contexts/topic-doots-store-context";
 import { TopicsContext } from "contexts/topics-store-context";
-import { useObserver } from "mobx-react-lite";
+import { useObserver, observer } from "mobx-react-lite";
 
-const TopicCard: React.FC<{ topic: Topic, topicDoot?: TopicDoot }> = (props) => {
+interface TopicCardProps {
+    topic:      Topic, 
+    topicDoot?: TopicDoot
+}
+
+const TopicCard: React.FC<TopicCardProps> = observer<TopicCardProps>((props) => {
     const { topic, topicDoot } = props;
 
-    const { authStore } = useStores(AuthContext);
+    const { authStore }       = useStores(AuthContext);
     const { topicsStore }     = useStores(TopicsContext);
     const { topicDootsStore } = useStores(TopicDootsContext);
 
@@ -31,58 +36,56 @@ const TopicCard: React.FC<{ topic: Topic, topicDoot?: TopicDoot }> = (props) => 
     }
 
     return (
-        useObserver(() => (
-            <div className="topic-card">
-                <h1>{topic.title}</h1>
-                <div className = "content">
-                    <p>
-                        {topic.body}
-                    </p>
-                </div>
-                <ul>
-                    <li>
-                        { // if
-                            authStore.isAuthenticated &&
-                            !upDooted &&
-                            <a href="#" onClick={() => doot(DootType.Updoot)}>Updoot</a>
-                        }
-                        {
-                            authStore.isAuthenticated &&
-                            upDooted &&
-                            <a href="#" onClick={() => doot(DootType.NotADoot)}>Remove Updoot</a>
-                        }
-                        <span>
-                            {topic.updoots} updoots
-                        </span>
-                    </li>
-                    <li>
-                        { // if
-                            authStore.isAuthenticated &&
-                            !downDooted &&
-                            <a href="#" onClick={() => doot(DootType.Downdoot)}>Downdoot</a>
-                        }
-                        { // if
-                            authStore.isAuthenticated &&
-                            downDooted &&
-                            <a href="#" onClick={() => doot(DootType.NotADoot)}>Remove Downdoot</a>
-                        }
-                        <span>
-                            {topic.downdoots} downdoots
-                        </span>
-                    </li>
-                    <li>
-                        { // if
-                            authStore.isAuthenticated &&
-                            <a href="#">Comment</a>
-                        }
-                        <span>
-                            0 comments
-                        </span>
-                    </li>
-                </ul>
+        <div className="topic-card">
+            <h1>{topic.title}</h1>
+            <div className = "content">
+                <p>
+                    {topic.body}
+                </p>
             </div>
-        ))
+            <ul>
+                <li>
+                    { // if
+                        authStore.isAuthenticated &&
+                        !upDooted &&
+                        <a href="#" onClick={() => doot(DootType.Updoot)}>Updoot</a>
+                    }
+                    {
+                        authStore.isAuthenticated &&
+                        upDooted &&
+                        <a href="#" onClick={() => doot(DootType.NotADoot)}>Remove Updoot</a>
+                    }
+                    <span>
+                        {topic.updoots} updoots
+                    </span>
+                </li>
+                <li>
+                    { // if
+                        authStore.isAuthenticated &&
+                        !downDooted &&
+                        <a href="#" onClick={() => doot(DootType.Downdoot)}>Downdoot</a>
+                    }
+                    { // if
+                        authStore.isAuthenticated &&
+                        downDooted &&
+                        <a href="#" onClick={() => doot(DootType.NotADoot)}>Remove Downdoot</a>
+                    }
+                    <span>
+                        {topic.downdoots} downdoots
+                    </span>
+                </li>
+                <li>
+                    { // if
+                        authStore.isAuthenticated &&
+                        <a href="#">Comment</a>
+                    }
+                    <span>
+                        0 comments
+                    </span>
+                </li>
+            </ul>
+        </div>
     );
-}
+});
 
 export default TopicCard;
