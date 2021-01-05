@@ -5,7 +5,7 @@
   "main": "electron\\main.js",
   "dependencies": {
     "@types/axios": "^0.14.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "mobx": "^5.15.3",
     "mobx-react-lite": "^1.5.2",
     "node-sass": "^4.13.0",
